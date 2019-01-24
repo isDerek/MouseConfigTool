@@ -300,47 +300,95 @@ void MouseConfigTool::on_sendDataBtn_clicked()
     }
 }
 
-// 设置协议包数据，并返回符合协议的数据包
-QByteArray MouseConfigTool::setReportDataStr(char ReportID, char CMDStatus, char CMDID, char DataLSB, char DataMSB, char DataLength, QByteArray data)
-{
-    QByteArray protocolData = nullptr;
-    int dataSum = 0;
-    protocolData[0] = ReportID;
-    protocolData[1] = CMDStatus;
-    protocolData[2] = CMDID;
-    protocolData[3] = DataLSB;
-    protocolData[4] = DataMSB;
-    protocolData[5] = DataLength;
-    for(int i = 0; i<DataLength;i++)
-    {
-        protocolData[6+i] = data[i];
-    }
-    for( int j = 6+DataLength ;j<63;j++)
-    {
-        protocolData[j] = 0x00;
-    }
-    for(int h = 0;h<DataLength;h++)
-    {
-        dataSum = dataSum + data[h];
-    }
-    protocolData[63] = 0x55-(dataSum)&0xff;
-//    qDebug()<<protocolData;
-    return protocolData;
-}
-
-// 按键 DPI 模式 1 发送
-void MouseConfigTool::postDPIMode1Notify()
-{
-    QByteArray sendData,protocolData;
-    sendData[0] = 1;
-    protocolData = setReportDataStr(0,0,0x11,0,0,strlen(sendData),sendData);
-    usbReadThread.getProtocolData(protocolData);
-}
-
 void MouseConfigTool::on_DPIMode1Btn_clicked()
 {
     if(HIDDeviceIsOpen)
     {
-    postDPIMode1Notify();
+        userModePro.postDPIMode1Notify();
     }
+}
+
+void MouseConfigTool::on_DPIMode2Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postDPIMode2Notify();
+    }
+}
+
+void MouseConfigTool::on_DPIMode3Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postDPIMode3Notify();
+    }
+}
+
+void MouseConfigTool::on_DPIMode4Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postDPIMode4Notify();
+    }
+}
+
+void MouseConfigTool::on_RGBMode1Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postRGBMode1Notify();
+    }
+}
+
+void MouseConfigTool::on_RGBMode2Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postRGBMode2Notify();
+    }
+}
+
+void MouseConfigTool::on_RGBMode3Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postRGBMode3Notify();
+    }
+}
+
+void MouseConfigTool::on_RGBMode4Btn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postRGBMode4Notify();
+    }
+}
+
+void MouseConfigTool::on_setConfigModeBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postConfigModeNotify();
+    }
+}
+
+void MouseConfigTool::on_setNormalModeBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postNormalModeNotify();
+    }
+}
+
+void MouseConfigTool::on_getCurrentDeviceModeBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.getCurrentDeviceMode();
+    }
+}
+
+void MouseConfigTool::on_getCurrentDPIModeBtn_clicked()
+{
+    userModePro.getCurrentDPI();
 }

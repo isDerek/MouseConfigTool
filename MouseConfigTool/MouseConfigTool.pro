@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mouseconfigtool.cpp \
-    usbreadthread.cpp
+    usbreadthread.cpp \
+    usermodepro.cpp
 
 HEADERS += \
         mouseconfigtool.h \
-    usbreadthread.h
+    usbreadthread.h \
+    usermodepro.h
 
 FORMS += \
         mouseconfigtool.ui
