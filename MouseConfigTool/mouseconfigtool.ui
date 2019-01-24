@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1282</width>
+    <width>1319</width>
     <height>921</height>
    </rect>
   </property>
@@ -707,6 +707,13 @@
       </layout>
      </widget>
     </item>
+    <item row="4" column="4">
+     <widget class="QGroupBox" name="groupBox_15">
+      <property name="title">
+       <string>USB 升级</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -714,7 +721,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1282</width>
+     <width>1319</width>
      <height>26</height>
     </rect>
    </property>

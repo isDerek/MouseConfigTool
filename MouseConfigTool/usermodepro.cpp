@@ -189,8 +189,45 @@ void UserModePro::getCurrentDeviceMode()
     protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
     usbReadThread.getProtocolData(protocolData);
 }
-
-void UserModePro::getCurrentDPI()
+// 获取当前 DPI
+void UserModePro::getCurrentDPIMode()
 {
-    qDebug()<<"123";
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x06;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+// 获取当前灯效
+void UserModePro::getCurrentRGBMode()
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x0C;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+// 获取当前电量
+void UserModePro::getCurrentPower()
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x0D;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
 }

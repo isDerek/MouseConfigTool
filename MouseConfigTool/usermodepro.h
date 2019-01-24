@@ -19,7 +19,9 @@ public:
     void postConfigModeNotify(); // 设备进入配置模式
     void postNormalModeNotify(); // 设备进入正常模式
     void getCurrentDeviceMode(); // 获取当前设备模式
-    void getCurrentDPI();
+    void getCurrentDPIMode(); // 获取当前 DPI
+    void getCurrentRGBMode(); // 获取当前灯效
+    void getCurrentPower(); // 获取当前电量
 private:
     char ReportID = 0; // 协议数据包 ReportID
     char CMDStatus = 0;// 协议数据包 CMD 状态

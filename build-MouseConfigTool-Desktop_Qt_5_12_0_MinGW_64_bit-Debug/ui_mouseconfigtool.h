@@ -106,6 +106,7 @@ public:
     QPushButton *clearSendDataBtn;
     QTextEdit *sendDataTextEdit;
     QPushButton *sendDataBtn;
+    QGroupBox *groupBox_15;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -114,7 +115,7 @@ public:
     {
         if (MouseConfigTool->objectName().isEmpty())
             MouseConfigTool->setObjectName(QString::fromUtf8("MouseConfigTool"));
-        MouseConfigTool->resize(1282, 921);
+        MouseConfigTool->resize(1319, 921);
         centralWidget = new QWidget(MouseConfigTool);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -438,10 +439,15 @@ public:
 
         gridLayout_3->addWidget(groupBox_5, 4, 2, 1, 1);
 
+        groupBox_15 = new QGroupBox(centralWidget);
+        groupBox_15->setObjectName(QString::fromUtf8("groupBox_15"));
+
+        gridLayout_3->addWidget(groupBox_15, 4, 4, 1, 1);
+
         MouseConfigTool->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MouseConfigTool);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1282, 26));
+        menuBar->setGeometry(QRect(0, 0, 1319, 26));
         MouseConfigTool->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MouseConfigTool);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -515,6 +521,7 @@ public:
         clearRevDataBtn->setText(QApplication::translate("MouseConfigTool", "\346\270\205\347\251\272\346\216\245\346\224\266\345\214\272", nullptr));
         clearSendDataBtn->setText(QApplication::translate("MouseConfigTool", "\346\270\205\347\251\272\345\217\221\351\200\201\345\214\272", nullptr));
         sendDataBtn->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201", nullptr));
+        groupBox_15->setTitle(QApplication::translate("MouseConfigTool", "USB \345\215\207\347\272\247", nullptr));
     } // retranslateUi
 
 };

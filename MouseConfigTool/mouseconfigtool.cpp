@@ -390,5 +390,24 @@ void MouseConfigTool::on_getCurrentDeviceModeBtn_clicked()
 
 void MouseConfigTool::on_getCurrentDPIModeBtn_clicked()
 {
-    userModePro.getCurrentDPI();
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.getCurrentDPIMode();
+    }
+}
+
+void MouseConfigTool::on_getCurrentRGBModeBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.getCurrentRGBMode();
+    }
+}
+
+void MouseConfigTool::on_getCurrentPowerBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.getCurrentPower();
+    }
 }

@@ -61,6 +61,8 @@ private slots:
     void on_setNormalModeBtn_clicked(); // 设备进入正常模式按钮
     void on_getCurrentDeviceModeBtn_clicked(); // 设备获取当前设备模式按钮
     void on_getCurrentDPIModeBtn_clicked();
+    void on_getCurrentRGBModeBtn_clicked();
+    void on_getCurrentPowerBtn_clicked();
 };
 
 #endif // MOUSECONFIGTOOL_H
