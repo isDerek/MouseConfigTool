@@ -2,6 +2,7 @@
 #include "ui_mouseconfigtool.h"
 #include "hidapi.h"
 #include <QDebug>
+
 MouseConfigTool::MouseConfigTool(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MouseConfigTool)
@@ -410,4 +411,9 @@ void MouseConfigTool::on_getCurrentPowerBtn_clicked()
     {
         userModePro.getCurrentPower();
     }
+}
+
+void MouseConfigTool::on_setMultiKeyBtn_clicked()
+{
+    macroKey->show();
 }

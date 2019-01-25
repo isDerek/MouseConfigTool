@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include "usbreadthread.h"
 #include "usermodepro.h"
+#include "macrokey.h"
 #include <QThread>
 #include <QObject>
 #include <QTimer>
+
 namespace Ui {
 class MouseConfigTool;
 }
@@ -25,6 +27,7 @@ public:
     unsigned short HexStrToUShort(QString str, int length); // 16进制字符串转 Ushort
     char ConvertHexChar(char ch); // 字符转 16 进制
     void StringToHex(QString str, QByteArray &sendData); // 字符串转 16 进制
+
 private:
     Ui::MouseConfigTool *ui;
     QStringList HIDDeviceList; // HID 设备显示
@@ -40,7 +43,7 @@ private:
     USBReadThread usbReadThread; // 读取 HID 设备消息线程
     UserModePro userModePro; // 用户模式协议类
     bool HIDDeviceIsOpen; // hid 设备是否开启
-
+    MacroKey *macroKey = new MacroKey; // 实例化 MacroKey 类
 private slots:
     void slot_rfStatusTmr(); // 刷新 HID 设备定时器
     void slot_getHIDDeviceIsOpen(bool); // 获取 HID 线程返回是否开启了设备槽函数
@@ -63,6 +66,7 @@ private slots:
     void on_getCurrentDPIModeBtn_clicked();
     void on_getCurrentRGBModeBtn_clicked();
     void on_getCurrentPowerBtn_clicked();
+    void on_setMultiKeyBtn_clicked();
 };
 
 #endif // MOUSECONFIGTOOL_H

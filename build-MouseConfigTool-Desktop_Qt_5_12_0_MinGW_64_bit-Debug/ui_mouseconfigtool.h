@@ -56,8 +56,7 @@ public:
     QPushButton *DPIMode4Btn;
     QGroupBox *groupBox_10;
     QVBoxLayout *verticalLayout_5;
-    QPushButton *setMultiKey0Btn;
-    QPushButton *setMultiKey1Btn;
+    QPushButton *setMultiKeyBtn;
     QGroupBox *groupBox_3;
     QLabel *label_10;
     QLineEdit *rpIDLineEdit;
@@ -226,15 +225,10 @@ public:
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        setMultiKey0Btn = new QPushButton(groupBox_10);
-        setMultiKey0Btn->setObjectName(QString::fromUtf8("setMultiKey0Btn"));
+        setMultiKeyBtn = new QPushButton(groupBox_10);
+        setMultiKeyBtn->setObjectName(QString::fromUtf8("setMultiKeyBtn"));
 
-        verticalLayout_5->addWidget(setMultiKey0Btn);
-
-        setMultiKey1Btn = new QPushButton(groupBox_10);
-        setMultiKey1Btn->setObjectName(QString::fromUtf8("setMultiKey1Btn"));
-
-        verticalLayout_5->addWidget(setMultiKey1Btn);
+        verticalLayout_5->addWidget(setMultiKeyBtn);
 
 
         gridLayout_3->addWidget(groupBox_10, 0, 4, 1, 1);
@@ -481,8 +475,7 @@ public:
         DPIMode3Btn->setText(QApplication::translate("MouseConfigTool", "1600", nullptr));
         DPIMode4Btn->setText(QApplication::translate("MouseConfigTool", "4000", nullptr));
         groupBox_10->setTitle(QApplication::translate("MouseConfigTool", "\350\256\276\347\275\256\346\214\211\351\224\256\345\256\217", nullptr));
-        setMultiKey0Btn->setText(QApplication::translate("MouseConfigTool", "\344\276\247\351\224\256 1", nullptr));
-        setMultiKey1Btn->setText(QApplication::translate("MouseConfigTool", "\344\276\247\351\224\256 2", nullptr));
+        setMultiKeyBtn->setText(QApplication::translate("MouseConfigTool", "\346\214\211\351\224\256\345\256\217", nullptr));
         groupBox_3->setTitle(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201\350\256\276\347\275\256", nullptr));
         label_10->setText(QApplication::translate("MouseConfigTool", "ReportID\357\274\232", nullptr));
         label_11->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201\345\255\227\350\212\202\346\225\260\357\274\232", nullptr));
