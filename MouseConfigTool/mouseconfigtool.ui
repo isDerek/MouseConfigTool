@@ -129,16 +129,9 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QPushButton" name="getMultiKey0Btn">
+        <widget class="QPushButton" name="getMultiKeyBtn">
          <property name="text">
-          <string>当前侧键1</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="getMultiKey1Btn">
-         <property name="text">
-          <string>当前侧键2</string>
+          <string>当前侧键</string>
          </property>
         </widget>
        </item>

@@ -147,6 +147,23 @@ void UserModePro::postRGBMode4Notify()
     protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
     usbReadThread.getProtocolData(protocolData);
 }
+// 按键宏模式
+void UserModePro::postMacroKeyNotify(int macroKey01, int macroKey02, int macroKey11, int macroKey12)
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = char(macroKey01);// 侧键 1 第一顺位
+    sendData[1] = char(macroKey02);// 侧键 1 第二顺位
+    sendData[2] = char(macroKey11);// 侧键 2 第一顺位
+    sendData[3] = char(macroKey12);// 侧键 2 第二顺位
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x09;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 4;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
 // 设备进入配置模式
 void UserModePro::postConfigModeNotify()
 {
@@ -225,6 +242,20 @@ void UserModePro::getCurrentPower()
     ReportID = 0x00;
     CMDStatus = 0x00;
     CMDID = 0x0D;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+
+void UserModePro::getCurrentMacroKeyConfig()
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x0A;
     DataLSB = 0x00;
     DataMSB = 0x00;
     DataLength = 0;

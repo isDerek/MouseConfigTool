@@ -15,6 +15,7 @@ MouseConfigTool::MouseConfigTool(QWidget *parent) :
     ui->recvDataTextEdit->setReadOnly(true);
     connect(&usbReadThread, SIGNAL(postHIDDeviceOpen(bool)), this, SLOT(slot_getHIDDeviceIsOpen(bool)));// 接收线程传来设备是否开启的数据
     connect(&usbReadThread,SIGNAL(postRevData(QByteArray)),this,SLOT(slot_getRevData(QByteArray))); // 接收线程传来的数据
+    connect(macroKey,SIGNAL(macroKey_signal(int, int, int, int)),this,SLOT(slot_getMacroKeyConfig(int, int, int, int)));
 }
 
 MouseConfigTool::~MouseConfigTool()
@@ -381,6 +382,14 @@ void MouseConfigTool::on_setNormalModeBtn_clicked()
     }
 }
 
+void MouseConfigTool::slot_getMacroKeyConfig(int macroKey01, int macroKey02, int macroKey11, int macroKey12)
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.postMacroKeyNotify(macroKey01,macroKey02,macroKey11,macroKey12);
+    }
+}
+
 void MouseConfigTool::on_getCurrentDeviceModeBtn_clicked()
 {
     if(HIDDeviceIsOpen)
@@ -415,5 +424,17 @@ void MouseConfigTool::on_getCurrentPowerBtn_clicked()
 
 void MouseConfigTool::on_setMultiKeyBtn_clicked()
 {
-    macroKey->show();
+    if(HIDDeviceIsOpen)
+    {
+        macroKey->show();
+    }
+}
+
+
+void MouseConfigTool::on_getMultiKeyBtn_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        userModePro.getCurrentMacroKeyConfig();
+    }
 }

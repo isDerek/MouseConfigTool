@@ -51,3 +51,5 @@ LIBS += -L$$_PRO_FILE_PWD_/ -lhidapi
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES +=

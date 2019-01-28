@@ -27,6 +27,7 @@ public:
     unsigned short HexStrToUShort(QString str, int length); // 16进制字符串转 Ushort
     char ConvertHexChar(char ch); // 字符转 16 进制
     void StringToHex(QString str, QByteArray &sendData); // 字符串转 16 进制
+    MacroKey *macroKey = new MacroKey; // 实例化 MacroKey 类
 
 private:
     Ui::MouseConfigTool *ui;
@@ -43,12 +44,13 @@ private:
     USBReadThread usbReadThread; // 读取 HID 设备消息线程
     UserModePro userModePro; // 用户模式协议类
     bool HIDDeviceIsOpen; // hid 设备是否开启
-    MacroKey *macroKey = new MacroKey; // 实例化 MacroKey 类
+
 private slots:
     void slot_rfStatusTmr(); // 刷新 HID 设备定时器
     void slot_getHIDDeviceIsOpen(bool); // 获取 HID 线程返回是否开启了设备槽函数
-    void on_on_offBtn_clicked(); // 打开按钮
     void slot_getRevData(QByteArray data); // 获取 HID 的数据槽函数
+    void slot_getMacroKeyConfig(int macroKey01, int macroKey02, int macroKey11, int macroKey12); // 获取按键宏配置
+    void on_on_offBtn_clicked(); // 打开按钮
     void on_clearRevDataBtn_clicked(); // 清空接收区按钮
     void on_clearSendDataBtn_clicked(); // 清空发送区按钮
     void on_sendDataBtn_clicked(); // 发送按钮
@@ -63,10 +65,11 @@ private slots:
     void on_setConfigModeBtn_clicked(); // 设备进入配置模式按钮
     void on_setNormalModeBtn_clicked(); // 设备进入正常模式按钮
     void on_getCurrentDeviceModeBtn_clicked(); // 设备获取当前设备模式按钮
-    void on_getCurrentDPIModeBtn_clicked();
-    void on_getCurrentRGBModeBtn_clicked();
-    void on_getCurrentPowerBtn_clicked();
-    void on_setMultiKeyBtn_clicked();
+    void on_getCurrentDPIModeBtn_clicked(); // 设备获取当前 DPI 模式按钮
+    void on_getCurrentRGBModeBtn_clicked(); // 设备获取当前灯效模式按钮
+    void on_getCurrentPowerBtn_clicked(); // 设备获取当前电量按钮
+    void on_setMultiKeyBtn_clicked(); // 设备设置按键宏按钮
+    void on_getMultiKeyBtn_clicked();// 设备获取当前侧键配置
 };
 
 #endif // MOUSECONFIGTOOL_H

@@ -1,4 +1,5 @@
 #include "usbreadthread.h"
+#include "mouseconfigtool.h"
 #include <QThread>
 #include <QDebug>
 #include "hidapi.h"
@@ -74,7 +75,6 @@ void USBReadThread::getSendData(QByteArray data, int length, int reportID)
         sendBuf[i] = data[i-1];
          qDebug()<<sendBuf[i];
     }
-
     hid_write(handle,sendBuf,length);
 }
 

@@ -42,8 +42,7 @@ public:
     QLineEdit *PIDLineEdit;
     QGroupBox *groupBox_11;
     QVBoxLayout *verticalLayout_6;
-    QPushButton *getMultiKey0Btn;
-    QPushButton *getMultiKey1Btn;
+    QPushButton *getMultiKeyBtn;
     QGroupBox *groupBox_12;
     QVBoxLayout *verticalLayout_8;
     QPushButton *setConfigModeBtn;
@@ -156,15 +155,10 @@ public:
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        getMultiKey0Btn = new QPushButton(groupBox_11);
-        getMultiKey0Btn->setObjectName(QString::fromUtf8("getMultiKey0Btn"));
+        getMultiKeyBtn = new QPushButton(groupBox_11);
+        getMultiKeyBtn->setObjectName(QString::fromUtf8("getMultiKeyBtn"));
 
-        verticalLayout_6->addWidget(getMultiKey0Btn);
-
-        getMultiKey1Btn = new QPushButton(groupBox_11);
-        getMultiKey1Btn->setObjectName(QString::fromUtf8("getMultiKey1Btn"));
-
-        verticalLayout_6->addWidget(getMultiKey1Btn);
+        verticalLayout_6->addWidget(getMultiKeyBtn);
 
 
         gridLayout_3->addWidget(groupBox_11, 1, 4, 1, 1);
@@ -464,8 +458,7 @@ public:
         label_12->setText(QApplication::translate("MouseConfigTool", "VID\357\274\232", nullptr));
         label_13->setText(QApplication::translate("MouseConfigTool", "PID:", nullptr));
         groupBox_11->setTitle(QApplication::translate("MouseConfigTool", "\350\216\267\345\217\226\346\214\211\351\224\256\345\256\217", nullptr));
-        getMultiKey0Btn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\2561", nullptr));
-        getMultiKey1Btn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\2562", nullptr));
+        getMultiKeyBtn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\256", nullptr));
         groupBox_12->setTitle(QApplication::translate("MouseConfigTool", "\350\256\276\347\275\256 Driver \346\250\241\345\274\217", nullptr));
         setConfigModeBtn->setText(QApplication::translate("MouseConfigTool", "\351\205\215\347\275\256\346\250\241\345\274\217", nullptr));
         setNormalModeBtn->setText(QApplication::translate("MouseConfigTool", "\346\255\243\345\270\270\346\250\241\345\274\217", nullptr));
