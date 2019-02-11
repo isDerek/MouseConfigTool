@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1319</width>
+    <width>1353</width>
     <height>921</height>
    </rect>
   </property>
@@ -698,6 +698,22 @@
       <property name="title">
        <string>USB 升级</string>
       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>BootLoader 模式</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="test">
+         <property name="text">
+          <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -707,7 +723,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1319</width>
+     <width>1353</width>
      <height>26</height>
     </rect>
    </property>

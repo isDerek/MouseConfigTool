@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QObject>
 #include <QTimer>
+#include <QFile>
 
 namespace Ui {
 class MouseConfigTool;
@@ -27,6 +28,9 @@ public:
     unsigned short HexStrToUShort(QString str, int length); // 16进制字符串转 Ushort
     char ConvertHexChar(char ch); // 字符转 16 进制
     void StringToHex(QString str, QByteArray &sendData); // 字符串转 16 进制
+    void IntToBin(int data,QByteArray &binData); // 10 进制转 2 进制
+    void BinToInt(QByteArray &data,QString strBin); // 2 进制转 10 进制
+
     MacroKey *macroKey = new MacroKey; // 实例化 MacroKey 类
 
 private:
@@ -70,6 +74,7 @@ private slots:
     void on_getCurrentPowerBtn_clicked(); // 设备获取当前电量按钮
     void on_setMultiKeyBtn_clicked(); // 设备设置按键宏按钮
     void on_getMultiKeyBtn_clicked();// 设备获取当前侧键配置
+    void on_test_clicked();
 };
 
 #endif // MOUSECONFIGTOOL_H

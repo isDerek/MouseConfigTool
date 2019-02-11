@@ -2,7 +2,7 @@
 #include "ui_mouseconfigtool.h"
 #include "hidapi.h"
 #include <QDebug>
-
+#include <QFileDialog>
 MouseConfigTool::MouseConfigTool(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MouseConfigTool)
@@ -195,6 +195,67 @@ void MouseConfigTool::clearHIDDeviceInfoList()
     PIDList.clear();
     usagePageList.clear();
     usageList.clear();
+}
+
+void MouseConfigTool::BinToInt(QByteArray &data, QString strBin)
+{
+    QString decimal;
+    int nDec = 0,nLen;
+    int i,j,k;
+    nLen = strBin.length();
+    for (i = 0 ; i<nLen ; i++) {
+        if(strBin[nLen-i-1]=="0")
+        {
+            continue;
+        }
+        else
+        {
+            k = 1;
+            for(j=0;j<i;j++)
+            {
+                k=k*2;
+            }
+            nDec += k;
+        }
+    }
+    decimal = QString::number(nDec);
+    data = decimal.toLatin1();
+}
+void MouseConfigTool::IntToBin(int data, QByteArray &binData)
+{
+    int nYushu, nShang;
+    QString strBin, strTemp;
+    bool bContinue = true;
+    while( bContinue )
+    {
+        nYushu = data % 2;
+        nShang = data / 2;
+        strBin = QString::number(nYushu) + strBin;
+        strTemp = strBin;
+        data = nShang;
+        if( nShang == 0)
+        {
+            bContinue = false;
+        }
+    }
+    int nTemp = strBin.length() % 4;
+    switch (nTemp) {
+        case 1:
+            strTemp = "000"+strBin;
+            strBin = strTemp;
+            break;
+        case 2:
+            strTemp = "00" + strBin;
+            strBin = strTemp;
+            break;
+        case 3:
+            strTemp = "0" + strBin;
+            strBin = strTemp;
+            break;
+        default:
+            break;
+    }
+    binData = strBin.toLatin1();
 }
 
 unsigned short MouseConfigTool::HexStrToUShort(QString str, int length)
@@ -436,5 +497,37 @@ void MouseConfigTool::on_getMultiKeyBtn_clicked()
     if(HIDDeviceIsOpen)
     {
         userModePro.getCurrentMacroKeyConfig();
+    }
+}
+
+void MouseConfigTool::on_test_clicked()
+{
+    QFile file;
+    QString f = QFileDialog::getOpenFileName(this,QString("选择文件"),QString("/"));
+    file.setFileName(f);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QByteArray line;
+        QByteArray binSize;
+        QByteArrayList lineList;
+        int HexSize = 0;
+        while(!file.atEnd())
+        {
+            line = file.readLine();
+            line.remove(0,1);// 去掉冒号
+            line.remove(line.size()-1,1);//过滤换行符
+//            qDebug()<<"line size:"<<line.size();
+//            qDebug()<<"line :"<<line;
+            HexSize += line.size();
+            lineList.append(line);
+            ui->recvDataTextEdit->append(line);
+        }
+        qDebug()<<HexSize;
+        IntToBin(HexSize,binSize);
+        qDebug()<<binSize;
+        qDebug()<<binSize.size();
+
+//        qDebug()<<lineList.size();
+        file.close();
     }
 }

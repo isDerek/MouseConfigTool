@@ -42,8 +42,7 @@ public:
     QLineEdit *PIDLineEdit;
     QGroupBox *groupBox_11;
     QVBoxLayout *verticalLayout_6;
-    QPushButton *getMultiKey0Btn;
-    QPushButton *getMultiKey1Btn;
+    QPushButton *getMultiKeyBtn;
     QGroupBox *groupBox_12;
     QVBoxLayout *verticalLayout_8;
     QPushButton *setConfigModeBtn;
@@ -56,8 +55,7 @@ public:
     QPushButton *DPIMode4Btn;
     QGroupBox *groupBox_10;
     QVBoxLayout *verticalLayout_5;
-    QPushButton *setMultiKey0Btn;
-    QPushButton *setMultiKey1Btn;
+    QPushButton *setMultiKeyBtn;
     QGroupBox *groupBox_3;
     QLabel *label_10;
     QLineEdit *rpIDLineEdit;
@@ -106,6 +104,7 @@ public:
     QPushButton *clearSendDataBtn;
     QTextEdit *sendDataTextEdit;
     QPushButton *sendDataBtn;
+    QGroupBox *groupBox_15;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -114,7 +113,7 @@ public:
     {
         if (MouseConfigTool->objectName().isEmpty())
             MouseConfigTool->setObjectName(QString::fromUtf8("MouseConfigTool"));
-        MouseConfigTool->resize(1282, 921);
+        MouseConfigTool->resize(1319, 921);
         centralWidget = new QWidget(MouseConfigTool);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -156,15 +155,10 @@ public:
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        getMultiKey0Btn = new QPushButton(groupBox_11);
-        getMultiKey0Btn->setObjectName(QString::fromUtf8("getMultiKey0Btn"));
+        getMultiKeyBtn = new QPushButton(groupBox_11);
+        getMultiKeyBtn->setObjectName(QString::fromUtf8("getMultiKeyBtn"));
 
-        verticalLayout_6->addWidget(getMultiKey0Btn);
-
-        getMultiKey1Btn = new QPushButton(groupBox_11);
-        getMultiKey1Btn->setObjectName(QString::fromUtf8("getMultiKey1Btn"));
-
-        verticalLayout_6->addWidget(getMultiKey1Btn);
+        verticalLayout_6->addWidget(getMultiKeyBtn);
 
 
         gridLayout_3->addWidget(groupBox_11, 1, 4, 1, 1);
@@ -225,15 +219,10 @@ public:
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        setMultiKey0Btn = new QPushButton(groupBox_10);
-        setMultiKey0Btn->setObjectName(QString::fromUtf8("setMultiKey0Btn"));
+        setMultiKeyBtn = new QPushButton(groupBox_10);
+        setMultiKeyBtn->setObjectName(QString::fromUtf8("setMultiKeyBtn"));
 
-        verticalLayout_5->addWidget(setMultiKey0Btn);
-
-        setMultiKey1Btn = new QPushButton(groupBox_10);
-        setMultiKey1Btn->setObjectName(QString::fromUtf8("setMultiKey1Btn"));
-
-        verticalLayout_5->addWidget(setMultiKey1Btn);
+        verticalLayout_5->addWidget(setMultiKeyBtn);
 
 
         gridLayout_3->addWidget(groupBox_10, 0, 4, 1, 1);
@@ -438,10 +427,15 @@ public:
 
         gridLayout_3->addWidget(groupBox_5, 4, 2, 1, 1);
 
+        groupBox_15 = new QGroupBox(centralWidget);
+        groupBox_15->setObjectName(QString::fromUtf8("groupBox_15"));
+
+        gridLayout_3->addWidget(groupBox_15, 4, 4, 1, 1);
+
         MouseConfigTool->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MouseConfigTool);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1282, 26));
+        menuBar->setGeometry(QRect(0, 0, 1319, 26));
         MouseConfigTool->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MouseConfigTool);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -464,8 +458,7 @@ public:
         label_12->setText(QApplication::translate("MouseConfigTool", "VID\357\274\232", nullptr));
         label_13->setText(QApplication::translate("MouseConfigTool", "PID:", nullptr));
         groupBox_11->setTitle(QApplication::translate("MouseConfigTool", "\350\216\267\345\217\226\346\214\211\351\224\256\345\256\217", nullptr));
-        getMultiKey0Btn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\2561", nullptr));
-        getMultiKey1Btn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\2562", nullptr));
+        getMultiKeyBtn->setText(QApplication::translate("MouseConfigTool", "\345\275\223\345\211\215\344\276\247\351\224\256", nullptr));
         groupBox_12->setTitle(QApplication::translate("MouseConfigTool", "\350\256\276\347\275\256 Driver \346\250\241\345\274\217", nullptr));
         setConfigModeBtn->setText(QApplication::translate("MouseConfigTool", "\351\205\215\347\275\256\346\250\241\345\274\217", nullptr));
         setNormalModeBtn->setText(QApplication::translate("MouseConfigTool", "\346\255\243\345\270\270\346\250\241\345\274\217", nullptr));
@@ -475,8 +468,7 @@ public:
         DPIMode3Btn->setText(QApplication::translate("MouseConfigTool", "1600", nullptr));
         DPIMode4Btn->setText(QApplication::translate("MouseConfigTool", "4000", nullptr));
         groupBox_10->setTitle(QApplication::translate("MouseConfigTool", "\350\256\276\347\275\256\346\214\211\351\224\256\345\256\217", nullptr));
-        setMultiKey0Btn->setText(QApplication::translate("MouseConfigTool", "\344\276\247\351\224\256 1", nullptr));
-        setMultiKey1Btn->setText(QApplication::translate("MouseConfigTool", "\344\276\247\351\224\256 2", nullptr));
+        setMultiKeyBtn->setText(QApplication::translate("MouseConfigTool", "\346\214\211\351\224\256\345\256\217", nullptr));
         groupBox_3->setTitle(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201\350\256\276\347\275\256", nullptr));
         label_10->setText(QApplication::translate("MouseConfigTool", "ReportID\357\274\232", nullptr));
         label_11->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201\345\255\227\350\212\202\346\225\260\357\274\232", nullptr));
@@ -515,6 +507,7 @@ public:
         clearRevDataBtn->setText(QApplication::translate("MouseConfigTool", "\346\270\205\347\251\272\346\216\245\346\224\266\345\214\272", nullptr));
         clearSendDataBtn->setText(QApplication::translate("MouseConfigTool", "\346\270\205\347\251\272\345\217\221\351\200\201\345\214\272", nullptr));
         sendDataBtn->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201", nullptr));
+        groupBox_15->setTitle(QApplication::translate("MouseConfigTool", "USB \345\215\207\347\272\247", nullptr));
     } // retranslateUi
 
 };
