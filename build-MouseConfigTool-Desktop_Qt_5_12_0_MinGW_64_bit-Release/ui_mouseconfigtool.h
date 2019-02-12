@@ -105,6 +105,13 @@ public:
     QTextEdit *sendDataTextEdit;
     QPushButton *sendDataBtn;
     QGroupBox *groupBox_15;
+    QVBoxLayout *verticalLayout_9;
+    QPushButton *updateButton;
+    QPushButton *selectHexFileBtn;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -113,7 +120,7 @@ public:
     {
         if (MouseConfigTool->objectName().isEmpty())
             MouseConfigTool->setObjectName(QString::fromUtf8("MouseConfigTool"));
-        MouseConfigTool->resize(1319, 921);
+        MouseConfigTool->resize(1353, 921);
         centralWidget = new QWidget(MouseConfigTool);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -429,13 +436,47 @@ public:
 
         groupBox_15 = new QGroupBox(centralWidget);
         groupBox_15->setObjectName(QString::fromUtf8("groupBox_15"));
+        verticalLayout_9 = new QVBoxLayout(groupBox_15);
+        verticalLayout_9->setSpacing(6);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
+        updateButton = new QPushButton(groupBox_15);
+        updateButton->setObjectName(QString::fromUtf8("updateButton"));
+
+        verticalLayout_9->addWidget(updateButton);
+
+        selectHexFileBtn = new QPushButton(groupBox_15);
+        selectHexFileBtn->setObjectName(QString::fromUtf8("selectHexFileBtn"));
+
+        verticalLayout_9->addWidget(selectHexFileBtn);
+
+        pushButton = new QPushButton(groupBox_15);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        verticalLayout_9->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(groupBox_15);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        verticalLayout_9->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(groupBox_15);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        verticalLayout_9->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(groupBox_15);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        verticalLayout_9->addWidget(pushButton_4);
+
 
         gridLayout_3->addWidget(groupBox_15, 4, 4, 1, 1);
 
         MouseConfigTool->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MouseConfigTool);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1319, 26));
+        menuBar->setGeometry(QRect(0, 0, 1353, 26));
         MouseConfigTool->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MouseConfigTool);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -508,6 +549,12 @@ public:
         clearSendDataBtn->setText(QApplication::translate("MouseConfigTool", "\346\270\205\347\251\272\345\217\221\351\200\201\345\214\272", nullptr));
         sendDataBtn->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201", nullptr));
         groupBox_15->setTitle(QApplication::translate("MouseConfigTool", "USB \345\215\207\347\272\247", nullptr));
+        updateButton->setText(QApplication::translate("MouseConfigTool", "\345\215\207\347\272\247", nullptr));
+        selectHexFileBtn->setText(QApplication::translate("MouseConfigTool", "\351\200\211\346\213\251\345\215\207\347\272\247\346\226\207\344\273\266", nullptr));
+        pushButton->setText(QApplication::translate("MouseConfigTool", "\350\277\233\345\205\245 BLMode", nullptr));
+        pushButton_2->setText(QApplication::translate("MouseConfigTool", "\346\233\264\346\226\260\347\211\210\346\234\254", nullptr));
+        pushButton_3->setText(QApplication::translate("MouseConfigTool", "\345\217\221\351\200\201\346\225\260\346\215\256", nullptr));
+        pushButton_4->setText(QApplication::translate("MouseConfigTool", "\351\200\200\345\207\272", nullptr));
     } // retranslateUi
 
 };

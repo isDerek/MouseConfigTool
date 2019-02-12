@@ -184,6 +184,7 @@ void MouseConfigTool::setDisplayParams()
     ui->usagePageText->setText(usagePageList[currentIndex]);
     ui->usageText->setText(usageList[currentIndex]);
 }
+
 void MouseConfigTool::clearHIDDeviceInfoList()
 {
     HIDDeviceList.clear();
@@ -195,6 +196,122 @@ void MouseConfigTool::clearHIDDeviceInfoList()
     PIDList.clear();
     usagePageList.clear();
     usageList.clear();
+}
+
+void MouseConfigTool::bufferCountsToLHStr(int ndata, QByteArrayList &aldata)
+{
+    int nQuotient,nRemainder;
+    int count = 0;
+    QByteArray binSize; // 二进制缓存
+    QByteArray IntSize; // 十进制缓存
+    QByteArrayList alBinSize; // 二进制 Hex 文件的大小
+    // 拆分二进制字符串，并将每一部分二进制字符串转换为十进制
+    IntToBin(ndata,binSize);
+    nQuotient = binSize.size() / 8;
+    nRemainder = binSize.size() % 8;
+    for(int i = 0 ; i<2; i++)
+    {
+        if(1 - nQuotient > 0)
+        {
+            alBinSize.insert(0,"");
+            nQuotient++;
+        }
+        else
+        {
+            if( count == 0)
+            {
+                alBinSize.insert(0,binSize.left(nRemainder));
+                binSize.remove(0,nRemainder);
+                count++;
+            }
+            else
+            {
+                alBinSize.insert(0,binSize.mid((count-1)*8,8));
+                count++;
+            }
+        }
+    }
+    aldata.clear();
+    BinToInt(IntSize,alBinSize[0]);
+    aldata.append(IntSize);
+    BinToInt(IntSize,alBinSize[1]);
+    aldata.append(IntSize);
+//    qDebug()<<"data 1:"<<aldata[1];
+//    qDebug()<<"data 0:"<<aldata[0];
+}
+
+void MouseConfigTool::hexSizeToLHStr(int ndata, QByteArrayList &aldata)
+{
+    int nQuotient,nRemainder;
+    int count = 0;
+    QByteArray binSize; // 二进制缓存
+    QByteArray IntSize; // 十进制缓存
+    QByteArrayList alBinSize; // 二进制 Hex 文件的大小
+    // 拆分二进制字符串，并将每一部分二进制字符串转换为十进制
+    IntToBin(ndata,binSize);
+    nQuotient = binSize.size() / 8;
+    nRemainder = binSize.size() % 8;
+    for(int i = 0 ; i<4; i++)
+    {
+        if(3 - nQuotient > 0)
+        {
+            alBinSize.insert(0,"");
+            nQuotient++;
+        }
+        else
+        {
+            if( count == 0)
+            {
+                alBinSize.insert(0,binSize.left(nRemainder));
+                binSize.remove(0,nRemainder);
+                count++;
+            }
+            else
+            {
+                alBinSize.insert(0,binSize.mid((count-1)*8,8));
+                count++;
+            }
+        }
+    }
+    aldata.clear();
+    BinToInt(IntSize,alBinSize[0]);
+    aldata.append(IntSize);
+    BinToInt(IntSize,alBinSize[1]);
+    aldata.append(IntSize);
+    BinToInt(IntSize,alBinSize[2]);
+    aldata.append(IntSize);
+    BinToInt(IntSize,alBinSize[3]);
+    aldata.append(IntSize);
+//    qDebug()<<"data 3:"<<alBinSize[3];
+//    qDebug()<<"data 2:"<<alBinSize[2];
+//    qDebug()<<"data 1:"<<alBinSize[1];
+//    qDebug()<<"data 0:"<<alBinSize[0];
+//    qDebug()<<"data 3:"<<aldata[3];
+//    qDebug()<<"data 2:"<<aldata[2];
+//    qDebug()<<"data 1:"<<aldata[1];
+//    qDebug()<<"data 0:"<<aldata[0];
+}
+void MouseConfigTool::hexFileHandler()
+{
+    QFile file;
+    QString f = QFileDialog::getOpenFileName(this,QString("选择文件"),QString("/"));
+    file.setFileName(f);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QByteArray bufferLine;   // 读取文件每一行
+        int HexSize = 0;
+        while(!file.atEnd())
+        {
+            bufferLine = file.readLine();
+            bufferLine.remove(0,1);// 去掉冒号
+            bufferLine.remove(bufferLine.size()-1,1);//过滤换行符
+            HexSize += bufferLine.size();
+            alBufferLine.append(bufferLine);
+            ui->recvDataTextEdit->append(bufferLine);
+        }
+        hexSizeToLHStr(HexSize,alLHBufferSize);
+        file.close();
+    }
 }
 
 void MouseConfigTool::BinToInt(QByteArray &data, QString strBin)
@@ -500,34 +617,64 @@ void MouseConfigTool::on_getMultiKeyBtn_clicked()
     }
 }
 
-void MouseConfigTool::on_test_clicked()
+void MouseConfigTool::on_selectHexFileBtn_clicked()
 {
-    QFile file;
-    QString f = QFileDialog::getOpenFileName(this,QString("选择文件"),QString("/"));
-    file.setFileName(f);
-    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(HIDDeviceIsOpen)
     {
-        QByteArray line;
-        QByteArray binSize;
-        QByteArrayList lineList;
-        int HexSize = 0;
-        while(!file.atEnd())
-        {
-            line = file.readLine();
-            line.remove(0,1);// 去掉冒号
-            line.remove(line.size()-1,1);//过滤换行符
-//            qDebug()<<"line size:"<<line.size();
-//            qDebug()<<"line :"<<line;
-            HexSize += line.size();
-            lineList.append(line);
-            ui->recvDataTextEdit->append(line);
-        }
-        qDebug()<<HexSize;
-        IntToBin(HexSize,binSize);
-        qDebug()<<binSize;
-        qDebug()<<binSize.size();
-
-//        qDebug()<<lineList.size();
-        file.close();
+        hexFileHandler();
     }
+}
+
+void MouseConfigTool::on_updateButton_clicked()
+{
+    if(HIDDeviceIsOpen)
+    {
+        QString sBufferLine;
+        QByteArray SendData;
+        int nBufferLineIndex = 0;
+        nBufferLineIndex = alBufferLine.size();
+//        userModePro.postEnterBootLoaderMode();
+//        userModePro.postUpdateDeviceInfo(alLHBufferSize);
+        for(int i=0 ; i< alBufferLine.size(); i++)
+        {
+            bufferCountsToLHStr(nBufferLineIndex--,alLHBufferIndex);
+            sBufferLine = alBufferLine[i];
+            StringToHex(sBufferLine,SendData);
+            userModePro.postUpdateFW(alLHBufferIndex, SendData);
+        }
+//        userModePro.postExitBootLoaderMode();
+        alBufferLine.clear(); // 清空之前的 Buffer
+    }
+}
+
+void MouseConfigTool::on_pushButton_clicked()
+{
+    userModePro.postEnterBootLoaderMode();
+}
+
+void MouseConfigTool::on_pushButton_2_clicked()
+{
+    userModePro.postUpdateDeviceInfo(alLHBufferSize);
+}
+
+void MouseConfigTool::on_pushButton_3_clicked()
+{
+    int nBufferLineIndex = 0;
+    QString sBufferLine;
+    QByteArray SendData;
+    SendData.clear(); // 清空数据
+    nBufferLineIndex = alBufferLine.size();
+    for(int i=0 ; i< alBufferLine.size(); i++)
+    {
+        bufferCountsToLHStr(nBufferLineIndex--,alLHBufferIndex);
+        sBufferLine = alBufferLine[i];
+        StringToHex(sBufferLine,SendData);
+        userModePro.postUpdateFW(alLHBufferIndex, SendData);
+    }
+    alBufferLine.clear(); // 清空之前的 Buffer
+}
+
+void MouseConfigTool::on_pushButton_4_clicked()
+{
+    userModePro.postExitBootLoaderMode();
 }

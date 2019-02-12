@@ -700,16 +700,44 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="updateButton">
          <property name="text">
-          <string>BootLoader 模式</string>
+          <string>升级</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="test">
+        <widget class="QPushButton" name="selectHexFileBtn">
          <property name="text">
-          <string>PushButton</string>
+          <string>选择升级文件</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>进入 BLMode</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>更新版本</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>发送数据</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>退出</string>
          </property>
         </widget>
        </item>

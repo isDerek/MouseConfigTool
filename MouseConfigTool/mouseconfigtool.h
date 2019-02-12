@@ -30,7 +30,9 @@ public:
     void StringToHex(QString str, QByteArray &sendData); // 字符串转 16 进制
     void IntToBin(int data,QByteArray &binData); // 10 进制转 2 进制
     void BinToInt(QByteArray &data,QString strBin); // 2 进制转 10 进制
-
+    void hexFileHandler();// hex 文件处理方法
+    void hexSizeToLHStr(int ndata, QByteArrayList &aldata); // hex 文件大小转换为高地位字符串
+    void bufferCountsToLHStr(int ndata, QByteArrayList &aldata); // 包数量转换为高地位字符串
     MacroKey *macroKey = new MacroKey; // 实例化 MacroKey 类
 
 private:
@@ -48,6 +50,9 @@ private:
     USBReadThread usbReadThread; // 读取 HID 设备消息线程
     UserModePro userModePro; // 用户模式协议类
     bool HIDDeviceIsOpen; // hid 设备是否开启
+    QByteArrayList alLHBufferSize; // 高低位数据包大小
+    QByteArrayList alBufferLine; // hex 文件的每一行数据
+    QByteArrayList alLHBufferIndex; // 高低位包数量索引
 
 private slots:
     void slot_rfStatusTmr(); // 刷新 HID 设备定时器
@@ -74,7 +79,12 @@ private slots:
     void on_getCurrentPowerBtn_clicked(); // 设备获取当前电量按钮
     void on_setMultiKeyBtn_clicked(); // 设备设置按键宏按钮
     void on_getMultiKeyBtn_clicked();// 设备获取当前侧键配置
-    void on_test_clicked();
+    void on_selectHexFileBtn_clicked();// 选择升级文件
+    void on_updateButton_clicked();// 点击升级
+    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 };
 
 #endif // MOUSECONFIGTOOL_H

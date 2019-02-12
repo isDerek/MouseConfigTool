@@ -24,6 +24,10 @@ public:
     void getCurrentRGBMode(); // 获取当前灯效
     void getCurrentPower(); // 获取当前电量
     void getCurrentMacroKeyConfig(); // 获取当前侧键配置
+    void postEnterBootLoaderMode(); // 设备进入 BootLoader 模式
+    void postUpdateDeviceInfo(QByteArrayList recData); //通知设备更新 FW 版本
+    void postUpdateFW(QByteArrayList alLHIndex, QByteArray data); // 更新 FW 数据
+    void postExitBootLoaderMode(); // 设备退出 BootLoader 模式
 
 private:
     char ReportID = 0; // 协议数据包 ReportID

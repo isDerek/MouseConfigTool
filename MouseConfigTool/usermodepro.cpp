@@ -4,6 +4,7 @@ UserModePro::UserModePro()
 {
 
 }
+
 // 设置协议包数据，并返回符合协议的数据包
 QByteArray UserModePro::setReportDataStr(char ReportID, char CMDStatus, char CMDID, char DataLSB, char DataMSB, char DataLength, QByteArray data)
 {
@@ -28,7 +29,6 @@ QByteArray UserModePro::setReportDataStr(char ReportID, char CMDStatus, char CMD
         dataSum = dataSum + data[h];
     }
     protocolData[63] = 0x55-(dataSum)&0xff;
-//    qDebug()<<protocolData;
     return protocolData;
 }
 
@@ -259,6 +259,65 @@ void UserModePro::getCurrentMacroKeyConfig()
     DataLSB = 0x00;
     DataMSB = 0x00;
     DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+
+void UserModePro::postEnterBootLoaderMode()
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x00;
+    CMDStatus = 0x00;
+    CMDID = 0x11;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+
+void UserModePro::postUpdateDeviceInfo(QByteArrayList recData)
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = char(recData[0].toInt());
+    sendData[1] = char(recData[1].toInt());
+    sendData[2] = char(recData[2].toInt());
+    sendData[3] = char(recData[3].toInt());
+    ReportID = 0x01;
+    CMDStatus = 0x00;
+    CMDID = 0x50;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 4;
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+
+void UserModePro::postUpdateFW(QByteArrayList alLHIndex, QByteArray data)
+{
+    QByteArray sendData,protocolData;
+    sendData = data;
+    ReportID = 0x01;
+    CMDStatus = 0x00;
+    CMDID = 0x51;
+    DataLSB = char(alLHIndex[0].toInt());
+    DataMSB = char(alLHIndex[1].toInt());
+    DataLength = char(sendData.size());
+    protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
+    usbReadThread.getProtocolData(protocolData);
+}
+
+void UserModePro::postExitBootLoaderMode()
+{
+    QByteArray sendData,protocolData;
+    sendData[0] = 0x00;
+    ReportID = 0x01;
+    CMDStatus = 0x00;
+    CMDID = 0x52;
+    DataLSB = 0x00;
+    DataMSB = 0x00;
+    DataLength = 0x00;
     protocolData = setReportDataStr(ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,sendData);
     usbReadThread.getProtocolData(protocolData);
 }
