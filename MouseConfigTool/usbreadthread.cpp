@@ -26,7 +26,14 @@ void USBReadThread::run()
             {
                 revData[i] = buf[i];
             }
-            emit postRevData(revData);
+            if(res == 0)
+            {
+
+            }
+            else
+            {
+               emit postRevData(revData);
+            }
             msleep(100);
         }
     }
@@ -50,12 +57,10 @@ void USBReadThread::getOpenHIDDevice(unsigned short PID, unsigned short VID, boo
         else{
             hid_set_nonblocking(handle,1);// 非阻塞，避免读 HID 设备时，关闭设备的时候，还在读函数阻塞，造成指针释放宕机
             emit postHIDDeviceOpen(true);
-            qDebug()<<"设备已开启";
         }
     }
     else
     {
-        qDebug()<<"设备已关闭";
         if(handle)
         {
            hid_close(handle);
@@ -81,11 +86,11 @@ void USBReadThread::getSendData(QByteArray data, int length, int reportID)
 void USBReadThread::getProtocolData(QByteArray data)
 {
     unsigned char *sendBuf;
-    sendBuf = (unsigned char*)malloc(64);
-    for(int i=0;i<64;i++)
+    sendBuf = (unsigned char*)malloc(65);
+    for(int i=0;i<65;i++)
     {
         sendBuf[i] = data[i];
-         qDebug()<<sendBuf[i];
+//         qDebug()<<sendBuf[i];
     }
     hid_write(handle,sendBuf,65);// 65 是因为 QN9080 智迪协议上是 1 个 Report + 64 Bytes 数据
 }

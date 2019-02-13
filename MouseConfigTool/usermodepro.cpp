@@ -26,24 +26,25 @@ QByteArray UserModePro::setReportDataStr(char ReportID, char CMDStatus, char CMD
     QByteArray protocolData = nullptr;
     int dataSum = 0;
     protocolData[0] = ReportID;
-    protocolData[1] = CMDStatus;
-    protocolData[2] = CMDID;
-    protocolData[3] = DataLSB;
-    protocolData[4] = DataMSB;
-    protocolData[5] = DataLength;
+    protocolData[1] = ReportID;
+    protocolData[2] = CMDStatus;
+    protocolData[3] = CMDID;
+    protocolData[4] = DataLSB;
+    protocolData[5] = DataMSB;
+    protocolData[6] = DataLength;
     for(int i = 0; i<DataLength;i++)
     {
-        protocolData[6+i] = data[i];
+        protocolData[7+i] = data[i];
     }
-    for( int j = 6+DataLength ;j<63;j++)
+    for( int j = 7+DataLength ;j<64;j++)
     {
         protocolData[j] = 0x00;
     }
-    for(int h = 0;h<DataLength;h++)
+    for(int h = 1;h<64;h++)
     {
-        dataSum = dataSum + data[h];
+        dataSum = dataSum + protocolData[h];
     }
-    protocolData[63] = 0x55-(dataSum)&0xff;
+    protocolData[64] = 0x55-(dataSum)&0xff;
     return protocolData;
 }
 

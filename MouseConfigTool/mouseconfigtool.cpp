@@ -316,6 +316,7 @@ void MouseConfigTool::hexFileHandler()
             alBufferLine.append(bufferLine);
             ui->recvDataTextEdit->append(bufferLine);
         }
+        HexSize = HexSize / 2;
         hexSizeToLHStr(HexSize,alLHBufferSize);
         file.close();
     }
@@ -676,18 +677,14 @@ void MouseConfigTool::on_pushButton_3_clicked()
     int nBufferLineIndex = 0;
     QString sBufferLine;
     QByteArray SendData;
-    nBufferLineIndex = alBufferLine.size();
+    nBufferLineIndex = alBufferLine.size()-1;
     for(int i=0 ; i< alBufferLine.size(); i++)
     {
         bufferCountsToLHStr(nBufferLineIndex--,alLHBufferIndex);
         sBufferLine = alBufferLine[i];
         StringToHex(sBufferLine,SendData);
         userModePro.postUpdateFW(alLHBufferIndex, SendData);
-        Delay_Msec(1000);
-//        if(CMDID != 0x51 && CMDStatus != 0x00)
-//        {
-//            break;
-//        }
+//        Delay_Msec(100);
     }
     alBufferLine.clear(); // 清空之前的 Buffer
     SendData.clear(); // 清空数据
