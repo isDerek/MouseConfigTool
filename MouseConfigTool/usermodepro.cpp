@@ -5,6 +5,21 @@ UserModePro::UserModePro()
 
 }
 
+void UserModePro::getReportDataStr(QByteArray protocolData, char &ReportID, char &CMDStatus, char &CMDID, char &DataLSB, char &DataMSB, char &DataLength, QByteArray &data, int &checkSum)
+{
+    ReportID = protocolData[0];
+    CMDStatus = protocolData[1];
+    CMDID = protocolData[2];
+    DataLSB = protocolData[3];
+    DataMSB = protocolData[4];
+    DataLength = protocolData[5];
+    for(int i = 0; i<DataLength;i++)
+    {
+        data[i] = protocolData[6+i];
+    }
+    checkSum = protocolData[63];
+}
+
 // 设置协议包数据，并返回符合协议的数据包
 QByteArray UserModePro::setReportDataStr(char ReportID, char CMDStatus, char CMDID, char DataLSB, char DataMSB, char DataLength, QByteArray data)
 {

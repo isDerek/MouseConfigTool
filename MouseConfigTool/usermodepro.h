@@ -8,6 +8,7 @@ class UserModePro
 public:
     UserModePro();
     QByteArray setReportDataStr(char ReportID,char CMDStatus,char CMDID, char DataLSB,char DataMSB,char DataLength,QByteArray data);
+    void getReportDataStr(QByteArray protocolData,char &ReportID,char &CMDStatus,char &CMDID, char &DataLSB,char &DataMSB,char &DataLength,QByteArray &data, int &checkSum);
     void postDPIMode1Notify(); // DPI 400 模式发送指令
     void postDPIMode2Notify(); // DPI 800 模式发送指令
     void postDPIMode3Notify(); // DPI 1600 模式发送指令

@@ -3,6 +3,7 @@
 #include "hidapi.h"
 #include <QDebug>
 #include <QFileDialog>
+
 MouseConfigTool::MouseConfigTool(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MouseConfigTool)
@@ -21,6 +22,12 @@ MouseConfigTool::MouseConfigTool(QWidget *parent) :
 MouseConfigTool::~MouseConfigTool()
 {
     delete ui;
+}
+void MouseConfigTool::Delay_Msec(int msec)
+{
+    QTime _Time = QTime::currentTime().addMSecs(msec);
+    while(QTime::currentTime()<_Time)
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
 char MouseConfigTool::ConvertHexChar(char ch)
@@ -435,6 +442,7 @@ void MouseConfigTool::slot_getRevData(QByteArray data)
 //    qDebug()<<data;
     if(!data.isEmpty())
     {
+        userModePro.getReportDataStr(data,ReportID,CMDStatus,CMDID,DataLSB,DataMSB,DataLength,proData,checkSum);
         data = data.toHex().toUpper().simplified();
         int len = data.count()/2;
         for(int i = 1; i<len+1; i++)
@@ -633,17 +641,23 @@ void MouseConfigTool::on_updateButton_clicked()
         QByteArray SendData;
         int nBufferLineIndex = 0;
         nBufferLineIndex = alBufferLine.size();
-//        userModePro.postEnterBootLoaderMode();
-//        userModePro.postUpdateDeviceInfo(alLHBufferSize);
+        userModePro.postEnterBootLoaderMode();
+        userModePro.postUpdateDeviceInfo(alLHBufferSize);
         for(int i=0 ; i< alBufferLine.size(); i++)
         {
             bufferCountsToLHStr(nBufferLineIndex--,alLHBufferIndex);
             sBufferLine = alBufferLine[i];
             StringToHex(sBufferLine,SendData);
             userModePro.postUpdateFW(alLHBufferIndex, SendData);
+            Delay_Msec(1000);
+    //        if(CMDID != 0x51 && CMDStatus != 0x00)
+    //        {
+    //            break;
+    //        }
         }
-//        userModePro.postExitBootLoaderMode();
+        userModePro.postExitBootLoaderMode();
         alBufferLine.clear(); // 清空之前的 Buffer
+        SendData.clear(); // 清空数据
     }
 }
 
@@ -662,7 +676,6 @@ void MouseConfigTool::on_pushButton_3_clicked()
     int nBufferLineIndex = 0;
     QString sBufferLine;
     QByteArray SendData;
-    SendData.clear(); // 清空数据
     nBufferLineIndex = alBufferLine.size();
     for(int i=0 ; i< alBufferLine.size(); i++)
     {
@@ -670,11 +683,34 @@ void MouseConfigTool::on_pushButton_3_clicked()
         sBufferLine = alBufferLine[i];
         StringToHex(sBufferLine,SendData);
         userModePro.postUpdateFW(alLHBufferIndex, SendData);
+        Delay_Msec(1000);
+//        if(CMDID != 0x51 && CMDStatus != 0x00)
+//        {
+//            break;
+//        }
     }
     alBufferLine.clear(); // 清空之前的 Buffer
+    SendData.clear(); // 清空数据
 }
 
 void MouseConfigTool::on_pushButton_4_clicked()
 {
     userModePro.postExitBootLoaderMode();
+//    QByteArray testdata;
+//    testdata[0] = 0x01;
+//    testdata[1] = 0x02;
+//    testdata[2] = 0x03;
+//    testdata[3] = 0x04;
+//    testdata[4] = 0x05;
+//    testdata[5] = 0x06;
+//    testdata[63] = 0x33;
+//    for(int i = 0; i<0x06;i++)
+//    {
+//        testdata[6+i] = 0x07;
+//    }
+//    for( int j = 6+0x06 ;j<63;j++)
+//    {
+//        testdata[j] = 0x00;
+//    }
+//    slot_getRevData(testdata);
 }

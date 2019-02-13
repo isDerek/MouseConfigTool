@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QFile>
+#include <QTime>
 
 namespace Ui {
 class MouseConfigTool;
@@ -21,6 +22,7 @@ class MouseConfigTool : public QMainWindow
 public:
     explicit MouseConfigTool(QWidget *parent = nullptr);
     ~MouseConfigTool();
+    void Delay_Msec(int msec);
     void getHIDDevceInfo(); // 将 HID 设备信息添加进 List
     void setComboHIDBox(); // 将 HID 信息写入设备下拉框
     void clearHIDDeviceInfoList(); // 清空 HID 设备信息 List
@@ -53,6 +55,14 @@ private:
     QByteArrayList alLHBufferSize; // 高低位数据包大小
     QByteArrayList alBufferLine; // hex 文件的每一行数据
     QByteArrayList alLHBufferIndex; // 高低位包数量索引
+    char ReportID; // HID Device ReportID
+    char CMDStatus; // 协议状态
+    char CMDID = 0x00; // 协议 ID, 空闲态 ID 为 0
+    char DataLSB; // 数据低位索引
+    char DataMSB; // 数据高位索引
+    char DataLength; // 数据长度
+    QByteArray proData; // 数据包
+    int checkSum; // 检验位
 
 private slots:
     void slot_rfStatusTmr(); // 刷新 HID 设备定时器
