@@ -1,4 +1,4 @@
-QMainWindow#MouseTool{
+QMainWindow#MouseConfigTool{
 border-image: url(:/hidmouse/images/mainWindows.jpg);
 }
 QLabel#wpiLogo{

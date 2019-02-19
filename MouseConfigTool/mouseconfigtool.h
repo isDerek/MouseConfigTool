@@ -10,7 +10,7 @@
 #include <QTimer>
 #include <QFile>
 #include <QTime>
-
+class QFile; // 前置声明 QFile
 namespace Ui {
 class MouseConfigTool;
 }
@@ -63,7 +63,8 @@ private:
     char DataLength; // 数据长度
     QByteArray proData; // 数据包
     int checkSum; // 检验位
-
+    QFile *mainQssFile; // 主界面样式文件
+    void mainGuiInit(); // 主界面样式初始化
 private slots:
     void slot_rfStatusTmr(); // 刷新 HID 设备定时器
     void slot_getHIDDeviceIsOpen(bool); // 获取 HID 线程返回是否开启了设备槽函数
@@ -91,10 +92,6 @@ private slots:
     void on_getMultiKeyBtn_clicked();// 设备获取当前侧键配置
     void on_selectHexFileBtn_clicked();// 选择升级文件
     void on_updateButton_clicked();// 点击升级
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
-    void on_pushButton_4_clicked();
 };
 
 #endif // MOUSECONFIGTOOL_H

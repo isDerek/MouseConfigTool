@@ -10,10 +10,12 @@ MouseConfigTool::MouseConfigTool(QWidget *parent) :
 {
     HIDDeviceIsOpen = false;
     ui->setupUi(this);
+    mainGuiInit();
     rfStatusTmr = new QTimer;
     connect(rfStatusTmr, SIGNAL(timeout()), this, SLOT(slot_rfStatusTmr()));
     rfStatusTmr->start(1000);
     ui->recvDataTextEdit->setReadOnly(true);
+    ui->updateHexName->setReadOnly(true);
     connect(&usbReadThread, SIGNAL(postHIDDeviceOpen(bool)), this, SLOT(slot_getHIDDeviceIsOpen(bool)));// 接收线程传来设备是否开启的数据
     connect(&usbReadThread,SIGNAL(postRevData(QByteArray)),this,SLOT(slot_getRevData(QByteArray))); // 接收线程传来的数据
     connect(macroKey,SIGNAL(macroKey_signal(int, int, int, int)),this,SLOT(slot_getMacroKeyConfig(int, int, int, int)));
@@ -23,6 +25,19 @@ MouseConfigTool::~MouseConfigTool()
 {
     delete ui;
 }
+
+void MouseConfigTool::mainGuiInit()
+{
+    mainQssFile = new QFile(":/qss/qss/mainWindows.qss",this);
+    // 只读方式打开该文件
+    mainQssFile->open(QFile::ReadOnly);
+    // 读取文件全部内容
+    QString styleSheet = QString(mainQssFile->readAll());
+    // 为 QApplication 设置样式表
+    qApp->setStyleSheet(styleSheet);
+    mainQssFile->close();
+}
+
 void MouseConfigTool::Delay_Msec(int msec)
 {
     QTime _Time = QTime::currentTime().addMSecs(msec);
@@ -301,12 +316,15 @@ void MouseConfigTool::hexSizeToLHStr(int ndata, QByteArrayList &aldata)
 void MouseConfigTool::hexFileHandler()
 {
     QFile file;
-    QString f = QFileDialog::getOpenFileName(this,QString("选择文件"),QString("/"));
+    QString f = QFileDialog::getOpenFileName(this,QString("选择文件"),QString("./"));
     file.setFileName(f);
+    ui->updateHexName->setText(f);
+
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QByteArray bufferLine;   // 读取文件每一行
         int HexSize = 0;
+
         while(!file.atEnd())
         {
             bufferLine = file.readLine();
@@ -641,7 +659,7 @@ void MouseConfigTool::on_updateButton_clicked()
         QString sBufferLine;
         QByteArray SendData;
         int nBufferLineIndex = 0;
-        nBufferLineIndex = alBufferLine.size();
+        nBufferLineIndex = alBufferLine.size() - 1;
         userModePro.postEnterBootLoaderMode();
         userModePro.postUpdateDeviceInfo(alLHBufferSize);
         for(int i=0 ; i< alBufferLine.size(); i++)
@@ -650,64 +668,10 @@ void MouseConfigTool::on_updateButton_clicked()
             sBufferLine = alBufferLine[i];
             StringToHex(sBufferLine,SendData);
             userModePro.postUpdateFW(alLHBufferIndex, SendData);
-            Delay_Msec(1000);
-    //        if(CMDID != 0x51 && CMDStatus != 0x00)
-    //        {
-    //            break;
-    //        }
         }
         userModePro.postExitBootLoaderMode();
+        ui->updateHexName->clear();// 清空 Hex 文件路径
         alBufferLine.clear(); // 清空之前的 Buffer
         SendData.clear(); // 清空数据
     }
-}
-
-void MouseConfigTool::on_pushButton_clicked()
-{
-    userModePro.postEnterBootLoaderMode();
-}
-
-void MouseConfigTool::on_pushButton_2_clicked()
-{
-    userModePro.postUpdateDeviceInfo(alLHBufferSize);
-}
-
-void MouseConfigTool::on_pushButton_3_clicked()
-{
-    int nBufferLineIndex = 0;
-    QString sBufferLine;
-    QByteArray SendData;
-    nBufferLineIndex = alBufferLine.size()-1;
-    for(int i=0 ; i< alBufferLine.size(); i++)
-    {
-        bufferCountsToLHStr(nBufferLineIndex--,alLHBufferIndex);
-        sBufferLine = alBufferLine[i];
-        StringToHex(sBufferLine,SendData);
-        userModePro.postUpdateFW(alLHBufferIndex, SendData);
-//        Delay_Msec(100);
-    }
-    alBufferLine.clear(); // 清空之前的 Buffer
-    SendData.clear(); // 清空数据
-}
-
-void MouseConfigTool::on_pushButton_4_clicked()
-{
-    userModePro.postExitBootLoaderMode();
-//    QByteArray testdata;
-//    testdata[0] = 0x01;
-//    testdata[1] = 0x02;
-//    testdata[2] = 0x03;
-//    testdata[3] = 0x04;
-//    testdata[4] = 0x05;
-//    testdata[5] = 0x06;
-//    testdata[63] = 0x33;
-//    for(int i = 0; i<0x06;i++)
-//    {
-//        testdata[6+i] = 0x07;
-//    }
-//    for( int j = 6+0x06 ;j<63;j++)
-//    {
-//        testdata[j] = 0x00;
-//    }
-//    slot_getRevData(testdata);
 }

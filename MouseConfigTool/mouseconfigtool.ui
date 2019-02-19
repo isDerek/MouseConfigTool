@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1353</width>
-    <height>921</height>
+    <width>1339</width>
+    <height>941</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,212 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
+    <item row="1" column="3">
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>获取当前 Driver 模式</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QPushButton" name="getCurrentDeviceModeBtn">
+         <property name="text">
+          <string>当前模式</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="currentModeText">
+         <property name="text">
+          <string>当前模式 Text</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QGroupBox" name="groupBox_12">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>设置 Driver 模式</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QPushButton" name="setConfigModeBtn">
+         <property name="text">
+          <string>配置模式</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="setNormalModeBtn">
+         <property name="text">
+          <string>正常模式</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="5" column="2" colspan="3">
+     <widget class="QGroupBox" name="groupBox_15">
+      <property name="title">
+       <string>USB 升级</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="selectHexFileBtn">
+         <property name="text">
+          <string>选择升级文件</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="updateButton">
+         <property name="text">
+          <string>升级</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="updateHexName"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>文件路径：</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="title">
+       <string>设置当前灯效</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="RGBMode1Btn">
+         <property name="text">
+          <string>无灯效</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="RGBMode2Btn">
+         <property name="text">
+          <string>循环灯</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="RGBMode3Btn">
+         <property name="text">
+          <string>呼吸灯</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="RGBMode4Btn">
+         <property name="text">
+          <string>跑马灯</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>数据发送窗口</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="clearRevDataBtn">
+         <property name="text">
+          <string>清空接收区</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="clearSendDataBtn">
+         <property name="text">
+          <string>清空发送区</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="2">
+        <widget class="QTextEdit" name="sendDataTextEdit"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="sendDataBtn">
+         <property name="text">
+          <string>发送</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QGroupBox" name="groupBox_14">
+      <property name="title">
+       <string>获取当前电量</string>
+      </property>
+      <widget class="QPushButton" name="getCurrentPowerBtn">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>当前电量</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="currentPowerText">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>70</y>
+         <width>111</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>当前电量 Text</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
     <item row="0" column="0" rowspan="2" colspan="2">
      <widget class="QGroupBox" name="groupBox">
       <property name="minimumSize">
@@ -116,94 +322,6 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="4">
-     <widget class="QGroupBox" name="groupBox_11">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>获取按键宏</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item>
-        <widget class="QPushButton" name="getMultiKeyBtn">
-         <property name="text">
-          <string>当前侧键</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QGroupBox" name="groupBox_12">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>设置 Driver 模式</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_8">
-       <item>
-        <widget class="QPushButton" name="setConfigModeBtn">
-         <property name="text">
-          <string>配置模式</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="setNormalModeBtn">
-         <property name="text">
-          <string>正常模式</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="2" column="3">
-     <widget class="QGroupBox" name="groupBox_6">
-      <property name="title">
-       <string>设置当前 DPI</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QPushButton" name="DPIMode1Btn">
-         <property name="text">
-          <string>400</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="DPIMode2Btn">
-         <property name="text">
-          <string>800</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="DPIMode3Btn">
-         <property name="text">
-          <string>1600</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="DPIMode4Btn">
-         <property name="text">
-          <string>4000</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="0" column="4">
      <widget class="QGroupBox" name="groupBox_10">
       <property name="maximumSize">
@@ -220,182 +338,6 @@
         <widget class="QPushButton" name="setMultiKeyBtn">
          <property name="text">
           <string>按键宏</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="minimumSize">
-       <size>
-        <width>350</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>350</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>发送设置</string>
-      </property>
-      <widget class="QLabel" name="label_10">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>72</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ReportID：</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="rpIDLineEdit">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>30</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>81</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>发送字节数：</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="sendBytesLineEdit">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>60</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QGroupBox" name="groupBox_7">
-      <property name="title">
-       <string>设置当前灯效</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QPushButton" name="RGBMode1Btn">
-         <property name="text">
-          <string>无灯效</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="RGBMode2Btn">
-         <property name="text">
-          <string>循环灯</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="RGBMode3Btn">
-         <property name="text">
-          <string>呼吸灯</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="RGBMode4Btn">
-         <property name="text">
-          <string>跑马灯</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="4" column="3">
-     <widget class="QGroupBox" name="groupBox_14">
-      <property name="title">
-       <string>获取当前电量</string>
-      </property>
-      <widget class="QPushButton" name="getCurrentPowerBtn">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>当前电量</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QGroupBox" name="groupBox_13">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>获取当前 Driver 模式</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_7">
-       <item>
-        <widget class="QPushButton" name="getCurrentDeviceModeBtn">
-         <property name="text">
-          <string>当前模式</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QGroupBox" name="groupBox_8">
-      <property name="title">
-       <string>获取当前 DPI</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QPushButton" name="getCurrentDPIModeBtn">
-         <property name="text">
-          <string>当前 DPI</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="3" column="4">
-     <widget class="QGroupBox" name="groupBox_9">
-      <property name="title">
-       <string>获取当前灯效</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QPushButton" name="getCurrentRGBModeBtn">
-         <property name="text">
-          <string>当前灯效</string>
          </property>
         </widget>
        </item>
@@ -629,6 +571,131 @@
       </widget>
      </widget>
     </item>
+    <item row="3" column="4">
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="title">
+       <string>获取当前灯效</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="getCurrentRGBModeBtn">
+         <property name="text">
+          <string>当前灯效</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="currentLEDText">
+         <property name="text">
+          <string>当前灯效 Text</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="title">
+       <string>设置当前 DPI</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="DPIMode1Btn">
+         <property name="text">
+          <string>400</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="DPIMode2Btn">
+         <property name="text">
+          <string>800</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="DPIMode3Btn">
+         <property name="text">
+          <string>1600</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="DPIMode4Btn">
+         <property name="text">
+          <string>4000</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>350</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>350</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>发送设置</string>
+      </property>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>72</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ReportID：</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="rpIDLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>30</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>发送字节数：</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="sendBytesLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>60</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </item>
     <item row="0" column="2" rowspan="4">
      <widget class="QGroupBox" name="groupBox_4">
       <property name="title">
@@ -648,96 +715,59 @@
       </layout>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>100</height>
-       </size>
-      </property>
+    <item row="3" column="3">
+     <widget class="QGroupBox" name="groupBox_8">
       <property name="title">
-       <string>数据发送窗口</string>
+       <string>获取当前 DPI</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="clearRevDataBtn">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="getCurrentDPIModeBtn">
          <property name="text">
-          <string>清空接收区</string>
+          <string>当前 DPI</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="clearSendDataBtn">
+       <item>
+        <widget class="QLabel" name="currentDPIText">
          <property name="text">
-          <string>清空发送区</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="2">
-        <widget class="QTextEdit" name="sendDataTextEdit"/>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="sendDataBtn">
-         <property name="text">
-          <string>发送</string>
+          <string>当前 DPI Text</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="4" column="4">
-     <widget class="QGroupBox" name="groupBox_15">
-      <property name="title">
-       <string>USB 升级</string>
+    <item row="1" column="4" colspan="2">
+     <widget class="QGroupBox" name="groupBox_11">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>120</height>
+       </size>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_9">
-       <item>
-        <widget class="QPushButton" name="updateButton">
+      <property name="title">
+       <string>获取按键宏</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="getMultiKeyBtn">
          <property name="text">
-          <string>升级</string>
+          <string>当前侧键</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="selectHexFileBtn">
+       <item row="1" column="0">
+        <widget class="QLabel" name="marcoKey1Text">
          <property name="text">
-          <string>选择升级文件</string>
+          <string>侧键一：</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
+       <item row="2" column="0">
+        <widget class="QLabel" name="marcoKey2Text">
          <property name="text">
-          <string>进入 BLMode</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>更新版本</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>发送数据</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="text">
-          <string>退出</string>
+          <string>侧键二：</string>
          </property>
         </widget>
        </item>
@@ -751,7 +781,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1353</width>
+     <width>1339</width>
      <height>26</height>
     </rect>
    </property>
